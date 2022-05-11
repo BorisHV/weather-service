@@ -1,22 +1,21 @@
 package com.example.labb3smhi.REST;
 
-
-import com.example.labb3smhi.SMHI.TimeSeries;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-public class SMHIRestClient {
+import static org.springframework.http.HttpHeaders.USER_AGENT;
 
-    String uri = "https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/18.0300/lat/59.3110/data.json";
+public class METRestClient {
 
-    public String getAllWeatherDataSMHI(){
+    String uri = "https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=59.3110&lon=18.0300";
+
+    public String getAllWeatherDataMET(){
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        httpHeaders.add("USER-AGENT", "hej");
         HttpEntity<String> httpEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<String> weather = restTemplate.exchange(uri, HttpMethod.GET, httpEntity, String.class);
         if(weather.getStatusCode() != HttpStatus.OK){
@@ -24,5 +23,8 @@ public class SMHIRestClient {
         }
         return weather.getBody().toString();
     }
-
 }
+//RestTemplate rt= new RestTemplateBuilder()
+// .defaultHeader(HttpHeaders.ACCEPT,MediaType.APPLICATION_JSON_VALUE)
+// .defaultHeader(HttpHeaders.USER_AGENT, "notJava!")
+// .build();
