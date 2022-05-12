@@ -1,10 +1,12 @@
-package com.example.labb3smhi.METHandler;
+package com.example.labb3smhi.Handlers;
 
 import com.example.labb3smhi.MET.Met;
+import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
+@Service
 public class METHandler {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -14,7 +16,7 @@ public class METHandler {
 
         String timeFormatted = ZonedDateTime.now()
                 .minusSeconds(ZonedDateTime.now().getSecond())
-                .minusMinutes(ZonedDateTime.now().getMinute()).plusHours(26).format(formatter);
+                .minusMinutes(ZonedDateTime.now().getMinute()).plusHours(25).format(formatter);
 
         for (int i = 0; i < sizeOfTimeSeriesArrayList; i++) {
             String replaceValidTime = met.getProperties().getTimeseries().get(i)
@@ -33,7 +35,7 @@ public class METHandler {
 
         String timeFormatted = ZonedDateTime.now()
                 .minusSeconds(ZonedDateTime.now().getSecond())
-                .minusMinutes(ZonedDateTime.now().getMinute()).plusHours(26).format(formatter);
+                .minusMinutes(ZonedDateTime.now().getMinute()).plusHours(25).format(formatter);
 
         for (int i = 0; i < sizeOfTimeSeriesArrayList; i++) {
             String replaceValidTime = met.getProperties().getTimeseries().get(i)
@@ -52,7 +54,7 @@ public class METHandler {
 
         String timeFormatted = ZonedDateTime.now()
                 .minusSeconds(ZonedDateTime.now().getSecond())
-                .minusMinutes(ZonedDateTime.now().getMinute()).plusHours(26).format(formatter);
+                .minusMinutes(ZonedDateTime.now().getMinute()).plusHours(25).format(formatter);
 
         for (int i = 0; i < sizeOfTimeSeriesArrayList; i++) {
             String replaceValidTime = met.getProperties().getTimeseries().get(i)

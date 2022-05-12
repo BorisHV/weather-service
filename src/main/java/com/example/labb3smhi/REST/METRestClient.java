@@ -1,17 +1,21 @@
 package com.example.labb3smhi.REST;
 
+import com.example.labb3smhi.MET.Met;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-import static org.springframework.http.HttpHeaders.USER_AGENT;
-
 public class METRestClient {
 
+    private ObjectMapper objectMapper = new ObjectMapper();
+    private METRestClient metRestClient = new METRestClient();
     String uri = "https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=59.3110&lon=18.0300";
 
-    public String getAllWeatherDataMET(){
+    public String getAllWeatherDataMET() throws JsonProcessingException {
+        getMETJsonData();
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
@@ -23,8 +27,8 @@ public class METRestClient {
         }
         return weather.getBody().toString();
     }
+    public void getMETJsonData() throws JsonProcessingException {
+        String jsonString = metRestClient.getAllWeatherDataMET();
+        Met met = objectMapper.readValue(jsonString, Met.class);
+    }
 }
-//RestTemplate rt= new RestTemplateBuilder()
-// .defaultHeader(HttpHeaders.ACCEPT,MediaType.APPLICATION_JSON_VALUE)
-// .defaultHeader(HttpHeaders.USER_AGENT, "notJava!")
-// .build();

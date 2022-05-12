@@ -1,10 +1,10 @@
 package com.example.labb3smhi;
 
 import com.example.labb3smhi.MET.Met;
-import com.example.labb3smhi.METHandler.METHandler;
+import com.example.labb3smhi.Handlers.METHandler;
 import com.example.labb3smhi.REST.METRestClient;
 import com.example.labb3smhi.REST.SMHIRestClient;
-import com.example.labb3smhi.SMHIHandler.SMHIHandler;
+import com.example.labb3smhi.Handlers.SMHIHandler;
 import com.example.labb3smhi.SMHI.Smhi;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,50 +19,39 @@ public class Labb3SmhiApplication {
     public static void main(String[] args) throws JsonProcessingException, ParseException {
         SpringApplication.run(Labb3SmhiApplication.class, args);
 
-        METRestClient metRestClient = new METRestClient();
+        SMHIHandler smhiHandler = new SMHIHandler();
         SMHIRestClient smhiRestClient = new SMHIRestClient();
-
-        String jsonString = metRestClient.getAllWeatherDataMET();
         ObjectMapper objectMapper = new ObjectMapper();
-        Met met = objectMapper.readValue(jsonString, Met.class);
-
         String jsonStringSmhi = smhiRestClient.getAllWeatherDataSMHI();
-
         Smhi smhi = objectMapper.readValue(jsonStringSmhi, Smhi.class);
 
+        System.out.println(smhiHandler.findTemperature24HoursFromNow(smhi));
 
-        METHandler metHandler = new METHandler();
+        //1. Hämta data = klart.
+        //2. Definiera var lagringen sker, lista eller db.
+        //3. Med db behöver vi en dao/repo, nu ska vi spara datan i dao:n
 
-        SMHIHandler smhiHandler = new SMHIHandler();
+        //Där vi har smhi-instansen, det är vår dao.
 
-        System.out.println(metHandler.findTemperature24HoursFromNow(met));
-
-        System.out.println(metHandler.findPrecipitationAmount24HoursFromNow(met));
-
-        System.out.println(metHandler.findWindSpeed24HoursFromNow(met));
-
-        System.out.println(smhiHandler.findWindSpeed24HoursFromNow(smhi));
-
-
-//        System.out.println(METHandler.findTemperature24HoursFromNow(met));
 //
-//        System.out.println(METHandler.findPrecipitation24HoursFromNow(smhi));
 //
-//        System.out.println(METHandler.findThunderProbability24HoursFromNow(smhi));
+//        METHandler metHandler = new METHandler();
+//
+//        SMHIHandler smhiHandler = new SMHIHandler();
+//
+//        System.out.println(metHandler.findTemperature24HoursFromNow(met));
+//
+//        System.out.println(metHandler.findPrecipitationAmount24HoursFromNow(met));
+//
+//        System.out.println(metHandler.findWindSpeed24HoursFromNow(met));
+//
+//        System.out.println("smhi starts here");
+//
+//        System.out.println(smhiHandler.findWindSpeed24HoursFromNow(smhi));
+//
+//        System.out.println(smhiHandler.findPrecipitation24HoursFromNow(smhi));
+//
+//        System.out.println(smhiHandler.findTemperature24HoursFromNow(smhi));
 
-
-//        SMHIRestClient smhiRestClient = new SMHIRestClient();
-//
-//        String jsonString = smhiRestClient.getAllWeatherDataSMHI();
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        Smhi smhi = objectMapper.readValue(jsonString, Smhi.class);
-//
-//        SMHIHandler SMHIHandler = new SMHIHandler();
-//
-//        System.out.println(SMHIHandler.findTemperature24HoursFromNow(smhi));
-//
-//        System.out.println(SMHIHandler.findPrecipitation24HoursFromNow(smhi));
-//
-//        System.out.println(SMHIHandler.findThunderProbability24HoursFromNow(smhi));
     }
 }

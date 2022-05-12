@@ -1,11 +1,13 @@
-package com.example.labb3smhi.SMHIHandler;
+package com.example.labb3smhi.Handlers;
 
 import com.example.labb3smhi.SMHI.Smhi;
+import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+@Service
 public class SMHIHandler {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -16,7 +18,8 @@ public class SMHIHandler {
 
     public List<Double> findTemperature24HoursFromNow(Smhi smhi) {
 
-        String timeFormatted = ZonedDateTime.now().minusSeconds(ZonedDateTime.now().getSecond()).minusMinutes(ZonedDateTime.now().getMinute()).plusHours(24).format(formatter);
+        String timeFormatted = ZonedDateTime.now().minusSeconds(ZonedDateTime.now()
+                .getSecond()).minusMinutes(ZonedDateTime.now().getMinute()).plusHours(25).format(formatter);
 
         for (int i = 0; i < sizeOfTimeSeriesArrayList; i++) {
             String replaceValidTime = smhi.getTimeSeries().get(i).getValidTime().replace("T", " ")
@@ -36,7 +39,7 @@ public class SMHIHandler {
     }
     public List<Double> findPrecipitation24HoursFromNow(Smhi smhi) {
 
-        String timeFormatted = ZonedDateTime.now().minusSeconds(ZonedDateTime.now().getSecond()).minusMinutes(ZonedDateTime.now().getMinute()).plusHours(26).format(formatter);
+        String timeFormatted = ZonedDateTime.now().minusSeconds(ZonedDateTime.now().getSecond()).minusMinutes(ZonedDateTime.now().getMinute()).plusHours(25).format(formatter);
 
         for (int i = 0; i < sizeOfTimeSeriesArrayList; i++) {
             String replaceValidTime = smhi.getTimeSeries().get(i).getValidTime().replace("T", " ")
@@ -57,7 +60,7 @@ public class SMHIHandler {
     public List<Double> findWindSpeed24HoursFromNow(Smhi smhi) {
 
         String timeFormatted = ZonedDateTime.now().minusSeconds(ZonedDateTime.now().getSecond())
-                .minusMinutes(ZonedDateTime.now().getMinute()).plusHours(26).format(formatter);
+                .minusMinutes(ZonedDateTime.now().getMinute()).plusHours(25).format(formatter);
 
         for (int i = 0; i < sizeOfTimeSeriesArrayList; i++) {
             String replaceValidTime = smhi.getTimeSeries().get(i).getValidTime().replace("T", " ")
