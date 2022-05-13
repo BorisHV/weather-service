@@ -6,6 +6,9 @@ import com.example.labb3smhi.REST.METRestClient;
 import com.example.labb3smhi.REST.SMHIRestClient;
 import com.example.labb3smhi.Handlers.SMHIHandler;
 import com.example.labb3smhi.SMHI.Smhi;
+import com.example.labb3smhi.controllers.BestWeatherController;
+import com.example.labb3smhi.repositorymet.RepositoryMET;
+import com.example.labb3smhi.repositorysmhi.RepositorySMHI;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.SpringApplication;
@@ -18,6 +21,13 @@ public class Labb3SmhiApplication {
 
     public static void main(String[] args) throws JsonProcessingException, ParseException {
         SpringApplication.run(Labb3SmhiApplication.class, args);
+
+//        RepositorySMHI repositorySMHI = new RepositorySMHI();
+//
+//        System.out.println(repositorySMHI.getPrecipitationSMHI().get(0));
+
+        BestWeatherController bestWeatherController = new BestWeatherController(new RepositorySMHI(), new RepositoryMET());
+        System.out.println(bestWeatherController.bestWeather());
 
 //        SMHIHandler smhiHandler = new SMHIHandler();
 //        SMHIRestClient smhiRestClient = new SMHIRestClient();
