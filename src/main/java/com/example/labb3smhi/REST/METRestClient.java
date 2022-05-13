@@ -10,12 +10,9 @@ import java.util.List;
 
 public class METRestClient {
 
-    private ObjectMapper objectMapper = new ObjectMapper();
-    private METRestClient metRestClient = new METRestClient();
     String uri = "https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=59.3110&lon=18.0300";
 
     public String getAllWeatherDataMET() throws JsonProcessingException {
-        getMETJsonData();
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
@@ -26,9 +23,5 @@ public class METRestClient {
             throw new RuntimeException("getAllWeatherDataSMHI failed");
         }
         return weather.getBody().toString();
-    }
-    public void getMETJsonData() throws JsonProcessingException {
-        String jsonString = metRestClient.getAllWeatherDataMET();
-        Met met = objectMapper.readValue(jsonString, Met.class);
     }
 }

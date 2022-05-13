@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block th:each="temperatureSMHI : ${temperatureListSMHI}">
+    <tr>
+        <td th:text="${temperatureSMHI}"></td>
+
+    </tr>
+</th:block>
+<th:block th:each="precipitationSMHI : ${precipitationListSMHI}">
+    <tr>
+        <td th:text="${precipitationSMHI}"></td>
+    <tr/>
+</th:block>
+
+<th:block th:each="windspeedSMHI : ${windSpeedListSMHI}">
+    <tr>
+        <td th:text="${windspeedSMHI}"></td>
+    <tr/>
+</th:block>
+
+
+
+<th:block th:each="temperatureMET : ${temperatureListMET}">
+    <tr>
+        <td th:text="${temperatureMET}"></td>
+
+    </tr>
+</th:block>
+<th:block th:each="precipitationMET : ${precipitationListMET}">
+    <tr>
+        <td th:text="${precipitationMET}"></td>
+    <tr/>
+</th:block>
+
+<th:block th:each="windSpeedMET : ${windSpeedListMET}">
+    <tr>
+        <td th:text="${windSpeedMET}"></td>
+    <tr/>
+</th:block>
+
+
+
+
+</body>
+</html>

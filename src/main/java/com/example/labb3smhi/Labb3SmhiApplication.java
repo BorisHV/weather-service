@@ -19,13 +19,13 @@ public class Labb3SmhiApplication {
     public static void main(String[] args) throws JsonProcessingException, ParseException {
         SpringApplication.run(Labb3SmhiApplication.class, args);
 
-        SMHIHandler smhiHandler = new SMHIHandler();
-        SMHIRestClient smhiRestClient = new SMHIRestClient();
-        ObjectMapper objectMapper = new ObjectMapper();
-        String jsonStringSmhi = smhiRestClient.getAllWeatherDataSMHI();
-        Smhi smhi = objectMapper.readValue(jsonStringSmhi, Smhi.class);
-
-        System.out.println(smhiHandler.findTemperature24HoursFromNow(smhi));
+//        SMHIHandler smhiHandler = new SMHIHandler();
+//        SMHIRestClient smhiRestClient = new SMHIRestClient();
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        String jsonStringSmhi = smhiRestClient.getAllWeatherDataSMHI();
+//        Smhi smhi = objectMapper.readValue(jsonStringSmhi, Smhi.class);
+//
+//        System.out.println(smhiHandler.findTemperature24HoursFromNow(smhi));
 
         //1. Hämta data = klart.
         //2. Definiera var lagringen sker, lista eller db.
