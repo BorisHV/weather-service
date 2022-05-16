@@ -18,11 +18,14 @@ public class RepositoryMET {
     METHandler metHandler = new METHandler();
     METRestClient metRestClient = new METRestClient();
     ObjectMapper objectMapper = new ObjectMapper();
-    String jsonStringMet;
     Met met;
     {
+        convertJsonToJavaMet();
+    }
+
+    private void convertJsonToJavaMet() {
         try {
-            jsonStringMet = metRestClient.getAllWeatherDataMET();
+            String jsonStringMet = metRestClient.getAllWeatherDataMET();
             met = objectMapper.readValue(jsonStringMet, Met.class);
         } catch (JsonProcessingException e) {
             e.printStackTrace();

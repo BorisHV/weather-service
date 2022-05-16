@@ -21,7 +21,7 @@ public class METController {
     private RepositoryMET repositoryMET;
 
     @GetMapping("/met")
-    public String getAllWeatherSMHI(Model model) {
+    public String getAllWeatherMET(Model model) {
 
         //String allWeatherData = smhiRestClient.getAllWeatherDataSMHI();
 

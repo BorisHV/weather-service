@@ -17,7 +17,7 @@ public class SMHIController {
 //    @Autowired
 //    private SMHIRestClient smhiRestClient;
 
-    @GetMapping("/smhi2")
+    @GetMapping("/smhi")
     public String getAllWeatherSMHI(Model model) {
 
         //String allWeatherData = smhiRestClient.getAllWeatherDataSMHI();

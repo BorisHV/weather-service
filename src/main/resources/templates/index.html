@@ -8,39 +8,50 @@
 <body>
 <th:block th:each="temperatureSMHI : ${temperatureListSMHI}">
     <tr>
-        <td th:text="${temperatureSMHI}"></td>
+        <td th:text="'Temperature: ' + ${temperatureSMHI}"></td>
 
     </tr>
+
 </th:block>
+
+<br/>
+
 <th:block th:each="precipitationSMHI : ${precipitationListSMHI}">
     <tr>
-        <td th:text="${precipitationSMHI}"></td>
+        <td th:text="'Precipitation: ' + ${precipitationSMHI}"></td>
     <tr/>
 </th:block>
+
+<br/>
 
 <th:block th:each="windspeedSMHI : ${windSpeedListSMHI}">
     <tr>
-        <td th:text="${windspeedSMHI}"></td>
+        <td th:text="'Wind speed: ' + ${windspeedSMHI}"></td>
     <tr/>
 </th:block>
 
-
+<br/>
 
 <th:block th:each="temperatureMET : ${temperatureListMET}">
     <tr>
-        <td th:text="${temperatureMET}"></td>
+        <td th:text="'Temperature: ' + ${temperatureMET}"></td>
 
     </tr>
 </th:block>
+
+<br/>
+
 <th:block th:each="precipitationMET : ${precipitationListMET}">
     <tr>
-        <td th:text="${precipitationMET}"></td>
+        <td th:text="'Precipitation: ' + ${precipitationMET}"></td>
     <tr/>
 </th:block>
 
+<br/>
+
 <th:block th:each="windSpeedMET : ${windSpeedListMET}">
     <tr>
-        <td th:text="${windSpeedMET}"></td>
+        <td th:text="'Wind speed: ' + ${windSpeedMET}"></td>
     <tr/>
 </th:block>
 

@@ -7,6 +7,8 @@ import com.example.labb3smhi.REST.SMHIRestClient;
 import com.example.labb3smhi.Handlers.SMHIHandler;
 import com.example.labb3smhi.SMHI.Smhi;
 import com.example.labb3smhi.controllers.BestWeatherController;
+import com.example.labb3smhi.controllers.METController;
+import com.example.labb3smhi.controllers.SMHIController;
 import com.example.labb3smhi.repositorymet.RepositoryMET;
 import com.example.labb3smhi.repositorysmhi.RepositorySMHI;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -22,12 +24,21 @@ public class Labb3SmhiApplication {
     public static void main(String[] args) throws JsonProcessingException, ParseException {
         SpringApplication.run(Labb3SmhiApplication.class, args);
 
+        RepositorySMHI repositorySMHI = new RepositorySMHI();
+        RepositoryMET repositoryMET = new RepositoryMET();
+        SMHIController smhiController = new SMHIController();
+        METController metController = new METController();
+
+        BestWeatherController bes = new BestWeatherController(repositorySMHI, repositoryMET, smhiController, metController);
+//        bes.bestWeather();
+        System.out.println(bes.getList());
+
 //        RepositorySMHI repositorySMHI = new RepositorySMHI();
 //
-//        System.out.println(repositorySMHI.getPrecipitationSMHI().get(0));
+//        System.out.println(repositorySMHI.getWindSpeedSMHI());
 
-        BestWeatherController bestWeatherController = new BestWeatherController(new RepositorySMHI(), new RepositoryMET());
-        System.out.println(bestWeatherController.bestWeather());
+        //BestWeatherController bestWeatherController = new BestWeatherController(new RepositorySMHI(), new RepositoryMET());
+        //System.out.println(bestWeatherController.bestWeather());
 
 //        SMHIHandler smhiHandler = new SMHIHandler();
 //        SMHIRestClient smhiRestClient = new SMHIRestClient();
