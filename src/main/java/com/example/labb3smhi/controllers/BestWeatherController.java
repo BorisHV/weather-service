@@ -16,6 +16,10 @@ public class BestWeatherController {
     private int smhiCounter = 0;
     private int metCounter = 0;
     private int equalCounter = 0;
+    private int rainOnSmhiNoRainOnMetCounter = 0;
+    private int rainOnMetNoRainOnSmhiCounter = 0;
+    private int highestTempSmhiCounter = 0;
+    private int highestTempMetCounter = 0;
 
     private List<Double> temperatureListMet;
     private List<Integer> precipitationListMet;
@@ -29,15 +33,12 @@ public class BestWeatherController {
     private METController metController;
 
     @Autowired
-    public BestWeatherController(RepositorySMHI repositorySMHI, RepositoryMET repositoryMET, SMHIController smhiController, METController metController) {
+    public BestWeatherController(RepositorySMHI repositorySMHI, RepositoryMET repositoryMET,
+                                 SMHIController smhiController, METController metController) {
         this.repositorySMHI = repositorySMHI;
         this.repositoryMET = repositoryMET;
         this.smhiController = smhiController;
         this.metController = metController;
-    }
-
-    public List<String> getList(){
-        return bestWeather;
     }
 
 //    @Autowired
@@ -87,77 +88,61 @@ public class BestWeatherController {
         return "";
     }
 
-    public String bestWeather() {
+        public void bestWeather() {
 
-        bestWeather.add(highestTemperature());
-        bestWeather.add(precipitationOnOneServiceAndNotTheOther());
-        bestWeather.add(lowestPrecipitation());
-        bestWeather.add(lowestWindSpeed());
+            bestWeather.add(highestTemperature());
+            bestWeather.add(precipitationOnOneServiceAndNotTheOther());
+            bestWeather.add(lowestPrecipitation());
+            bestWeather.add(lowestWindSpeed());
 
-        for (String weatherString : bestWeather) {
+            for (String weatherString : bestWeather) {
 
-            if (weatherString.equals("rainOnSmhiNoRainOnMet")) {
-                return "rainOnSmhiNoRainOnMet";
-            }
-            else if (weatherString.equals("rainOnMetNoRainOnSmhi")) {
-                return "rainOnMetNoRainOnSmhi";
-            }
-            else if (weatherString.equals("highestTempSmhi")) {
-                return "highestTempSmhi";
-            }
-            else if (weatherString.equals("highestTempMet")) {
-                return "highestTempMet";
-            }
-            else if (weatherString.equals("Smhi")) {
-                smhiCounter++;
-            }
-            else if (weatherString.equals("Met")) {
-                metCounter++;
-            }
-            else if (weatherString.equals("equal")) {
-                equalCounter++;
-            }
-
-            else if (smhiCounter > metCounter) {
-                return "Smhi";
-            }
-            else if (smhiCounter < metCounter) {
-                return "Met";
-            }
-            else if(equalCounter > smhiCounter && equalCounter > metCounter){
-                return "equal";
+                if (weatherString.equals("rainOnSmhiNoRainOnMet")) {
+                    rainOnSmhiNoRainOnMetCounter++;
+                } else if (weatherString.equals("rainOnMetNoRainOnSmhi")) {
+                    rainOnMetNoRainOnSmhiCounter++;
+                } else if (weatherString.equals("highestTempSmhi")) {
+                    highestTempSmhiCounter++;
+                } else if (weatherString.equals("highestTempMet")) {
+                    highestTempMetCounter++;
+                } else if (weatherString.equals("Smhi")) {
+                    smhiCounter++;
+                } else if (weatherString.equals("Met")) {
+                    metCounter++;
+                } else if (weatherString.equals("equal")) {
+                    equalCounter++;
+                }
             }
         }
-        return null;
-    }
 
     @GetMapping("/best")
-    String bestWeatherToShow(Model model) {
+    public String bestWeatherToShow(Model model) {
+
         bestWeather();
-        for (String weatherString : bestWeather) {
-            if (weatherString.equals("rainOnSmhiNoRainOnMet")) {
+        if (rainOnSmhiNoRainOnMetCounter > 0) {
+            getAllWeatherMet(model);
+        }
 
-                getAllWeatherMet(model);
+        else if (rainOnMetNoRainOnSmhiCounter > 0) {
+            getAllWeatherSmhi(model);
+        }
 
-            }
-            if (weatherString.equals("rainOnMetNoRainOnSmhi")) {
+        else if (highestTempSmhiCounter > 0) {
+            getAllWeatherSmhi(model);
+        }
 
-                getAllWeatherSmhi(model);
-            }
-            if (weatherString.equals("highestTempSmhi")) {
-                getAllWeatherSmhi(model);
-            }
-            if (weatherString.equals("highestTempMet")) {
-                getAllWeatherMet(model);
-            }
-            if (smhiCounter > metCounter) {
-                getAllWeatherSmhi(model);
-            }
-            if (smhiCounter < metCounter) {
-                getAllWeatherMet(model);
-            } else {
-                getAllWeatherSmhi(model);
-            }
+        else if (highestTempMetCounter > 0) {
+            getAllWeatherMet(model);
+        }
+
+        else if (smhiCounter > metCounter) {
+            getAllWeatherSmhi(model);
+        }
+
+        else if (smhiCounter < metCounter) {
+            getAllWeatherMet(model);
+        } else {
+            getAllWeatherSmhi(model);
         }
         return "index";
     }

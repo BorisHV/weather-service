@@ -29,9 +29,9 @@ public class Labb3SmhiApplication {
         SMHIController smhiController = new SMHIController();
         METController metController = new METController();
 
-        BestWeatherController bes = new BestWeatherController(repositorySMHI, repositoryMET, smhiController, metController);
+        BestWeatherController bestWeatherController = new BestWeatherController(repositorySMHI, repositoryMET, smhiController, metController);
 //        bes.bestWeather();
-        System.out.println(bes.getList());
+
 
 //        RepositorySMHI repositorySMHI = new RepositorySMHI();
 //
