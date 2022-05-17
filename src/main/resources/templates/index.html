@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Weathers</title>
 </head>
 <body>
 <th:block th:each="temperatureSMHI : ${temperatureListSMHI}">
@@ -52,6 +52,31 @@
 <th:block th:each="windSpeedMET : ${windSpeedListMET}">
     <tr>
         <td th:text="'Wind speed: ' + ${windSpeedMET}"></td>
+    <tr/>
+</th:block>
+
+<br/>
+
+<th:block th:each="temperatureOpenWeather : ${temperatureListOpenWeather}">
+    <tr>
+        <td th:text="'Temperature: ' + ${temperatureOpenWeather}"></td>
+
+    </tr>
+</th:block>
+
+<br/>
+
+<th:block th:each="precipitationOpenWeather : ${precipitationListOpenWeather}">
+    <tr>
+        <td th:text="'Precipitation: ' + ${precipitationOpenWeather}"></td>
+    <tr/>
+</th:block>
+
+<br/>
+
+<th:block th:each="windSpeedOpenWeather : ${windSpeedListOpenWeather}">
+    <tr>
+        <td th:text="'Wind speed: ' + ${windSpeedOpenWeather}"></td>
     <tr/>
 </th:block>
 

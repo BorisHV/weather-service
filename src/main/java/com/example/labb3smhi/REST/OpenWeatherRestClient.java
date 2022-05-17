@@ -7,9 +7,10 @@ import java.util.List;
 
 public class OpenWeatherRestClient {
 
-    String uri = "https://api.openweathermap.org/data/3.0/onecall?lat=59.3110&lon=18.0300&appid=12f0b17b028dc893417b2b1b1ad9ac79";
+    String uri = "https://api.openweathermap.org/data/2.5/onecall?lat=59.3110&lon=18.0300&units=metric&exclude=minutely&appid=12f0b17b028dc893417b2b1b1ad9ac79";
 
     public String getAllWeatherDataOpenWeather(){
+
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));

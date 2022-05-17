@@ -13,10 +13,6 @@ import java.util.List;
 @Controller
 public class METController {
 
-    private List<Double> temperatureListMet;
-    private List<Integer> precipitationListMet;
-    private List<Double> windSpeedListMet;
-
     @Autowired
     private RepositoryMET repositoryMET;
 
@@ -26,15 +22,15 @@ public class METController {
         //String allWeatherData = smhiRestClient.getAllWeatherDataSMHI();
 
         Double temperatureRepositoryMET = repositoryMET.getTemperatureMET();
-        temperatureListMet = new ArrayList<>();
+        List<Double> temperatureListMet = new ArrayList<>();
         temperatureListMet.add(temperatureRepositoryMET);
 
         Integer precipitationMET = repositoryMET.getPrecipitationMET();
-        precipitationListMet = new ArrayList<>();
+        List<Integer> precipitationListMet = new ArrayList<>();
         precipitationListMet.add(precipitationMET);
 
         Double windSpeedMET = repositoryMET.getWindSpeedMET();
-        windSpeedListMet = new ArrayList<>();
+        List<Double> windSpeedListMet = new ArrayList<>();
         windSpeedListMet.add(windSpeedMET);
 
         model.addAttribute("temperatureListMET", temperatureRepositoryMET);

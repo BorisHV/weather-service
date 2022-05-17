@@ -8,11 +8,12 @@ import com.example.labb3smhi.REST.SMHIRestClient;
 import com.example.labb3smhi.SMHI.Smhi;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Repository
 public class RepositoryMET {
 
     METHandler metHandler = new METHandler();

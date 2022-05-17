@@ -1,18 +1,9 @@
 package com.example.labb3smhi;
 
-import com.example.labb3smhi.MET.Met;
-import com.example.labb3smhi.Handlers.METHandler;
-import com.example.labb3smhi.REST.METRestClient;
-import com.example.labb3smhi.REST.SMHIRestClient;
-import com.example.labb3smhi.Handlers.SMHIHandler;
-import com.example.labb3smhi.SMHI.Smhi;
-import com.example.labb3smhi.controllers.BestWeatherController;
-import com.example.labb3smhi.controllers.METController;
-import com.example.labb3smhi.controllers.SMHIController;
-import com.example.labb3smhi.repositorymet.RepositoryMET;
-import com.example.labb3smhi.repositorysmhi.RepositorySMHI;
+import com.example.labb3smhi.Handlers.OpenWeatherHandler;
+import com.example.labb3smhi.openWeatherRepository.RepositoryOpenWeather;
+import com.example.labb3smhi.openweather.OpenWeather;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -24,18 +15,25 @@ public class Labb3SmhiApplication {
     public static void main(String[] args) throws JsonProcessingException, ParseException {
         SpringApplication.run(Labb3SmhiApplication.class, args);
 
-        RepositorySMHI repositorySMHI = new RepositorySMHI();
-        RepositoryMET repositoryMET = new RepositoryMET();
-        SMHIController smhiController = new SMHIController();
-        METController metController = new METController();
-
-        BestWeatherController bestWeatherController = new BestWeatherController(repositorySMHI, repositoryMET, smhiController, metController);
-//        bes.bestWeather();
-
-
 //        RepositorySMHI repositorySMHI = new RepositorySMHI();
+//        RepositoryMET repositoryMET = new RepositoryMET();
+//        SMHIController smhiController = new SMHIController();
+//        METController metController = new METController();
 //
-//        System.out.println(repositorySMHI.getWindSpeedSMHI());
+//        BestWeatherController bestWeatherController = new BestWeatherController(repositorySMHI, repositoryMET, smhiController, metController);
+////        bes.bestWeather();
+
+        OpenWeatherHandler openWeatherHandler = new OpenWeatherHandler();
+        OpenWeather openWeather = new OpenWeather();
+
+        RepositoryOpenWeather repositoryOpenWeather = new RepositoryOpenWeather();
+
+        System.out.println(repositoryOpenWeather.getTemperatureOpenWeather());
+        System.out.println(repositoryOpenWeather.getPrecipitationOpenWeather());
+        System.out.println(repositoryOpenWeather.getWindSpeedOpenWeather());
+//
+//        System.out.println(openWeather.getList());
+
 
         //BestWeatherController bestWeatherController = new BestWeatherController(new RepositorySMHI(), new RepositoryMET());
         //System.out.println(bestWeatherController.bestWeather());
