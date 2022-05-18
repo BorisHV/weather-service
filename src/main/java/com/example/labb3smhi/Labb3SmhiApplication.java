@@ -1,8 +1,11 @@
 package com.example.labb3smhi;
 
 import com.example.labb3smhi.Handlers.OpenWeatherHandler;
+import com.example.labb3smhi.Handlers.SMHIHandler;
+import com.example.labb3smhi.SMHI.Smhi;
 import com.example.labb3smhi.openWeatherRepository.RepositoryOpenWeather;
 import com.example.labb3smhi.openweather.OpenWeather;
+import com.example.labb3smhi.repositorysmhi.RepositorySMHI;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,14 +26,17 @@ public class Labb3SmhiApplication {
 //        BestWeatherController bestWeatherController = new BestWeatherController(repositorySMHI, repositoryMET, smhiController, metController);
 ////        bes.bestWeather();
 
-        OpenWeatherHandler openWeatherHandler = new OpenWeatherHandler();
-        OpenWeather openWeather = new OpenWeather();
+        RepositorySMHI repositorySMHI = new RepositorySMHI();
+        System.out.println(repositorySMHI.getPrecipitationSMHI());
 
-        RepositoryOpenWeather repositoryOpenWeather = new RepositoryOpenWeather();
-
-        System.out.println(repositoryOpenWeather.getTemperatureOpenWeather());
-        System.out.println(repositoryOpenWeather.getPrecipitationOpenWeather());
-        System.out.println(repositoryOpenWeather.getWindSpeedOpenWeather());
+//        OpenWeatherHandler openWeatherHandler = new OpenWeatherHandler();
+//        OpenWeather openWeather = new OpenWeather();
+//
+//        RepositoryOpenWeather repositoryOpenWeather = new RepositoryOpenWeather();
+//
+//        System.out.println(repositoryOpenWeather.getTemperatureOpenWeather());
+//        System.out.println(repositoryOpenWeather.getPrecipitationOpenWeather());
+//        System.out.println(repositoryOpenWeather.getWindSpeedOpenWeather());
 //
 //        System.out.println(openWeather.getList());
 

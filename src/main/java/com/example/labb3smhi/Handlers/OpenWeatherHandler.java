@@ -3,7 +3,6 @@ package com.example.labb3smhi.Handlers;
 import com.example.labb3smhi.openweather.OpenWeather;
 import org.springframework.stereotype.Service;
 
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Service

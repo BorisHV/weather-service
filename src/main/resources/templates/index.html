@@ -8,7 +8,12 @@
 <body>
 <th:block th:each="temperatureSMHI : ${temperatureListSMHI}">
     <tr>
-        <td th:text="'Temperature: ' + ${temperatureSMHI}"></td>
+<!--                                   ${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}-->
+        <td th:text="'tid och datum' + ${localDateTime.format('dd MM yyyy HH:mm')}"> </td>
+<!--        <td th:text="'tid och datum' + *{dateTimeNow.getMonth()}"> </td>-->
+    </tr>
+    <tr>
+        <td th:text="'Temperature SMHI: ' + ${temperatureSMHI}"></td>
 
     </tr>
 
@@ -18,7 +23,7 @@
 
 <th:block th:each="precipitationSMHI : ${precipitationListSMHI}">
     <tr>
-        <td th:text="'Precipitation: ' + ${precipitationSMHI}"></td>
+        <td th:text="'Precipitation SMHI: ' + ${precipitationSMHI}"></td>
     <tr/>
 </th:block>
 
@@ -26,7 +31,7 @@
 
 <th:block th:each="windspeedSMHI : ${windSpeedListSMHI}">
     <tr>
-        <td th:text="'Wind speed: ' + ${windspeedSMHI}"></td>
+        <td th:text="'Wind speed SMHI: ' + ${windspeedSMHI}"></td>
     <tr/>
 </th:block>
 
@@ -34,7 +39,7 @@
 
 <th:block th:each="temperatureMET : ${temperatureListMET}">
     <tr>
-        <td th:text="'Temperature: ' + ${temperatureMET}"></td>
+        <td th:text="'Temperature MET: ' + ${temperatureMET}"></td>
 
     </tr>
 </th:block>
@@ -43,7 +48,7 @@
 
 <th:block th:each="precipitationMET : ${precipitationListMET}">
     <tr>
-        <td th:text="'Precipitation: ' + ${precipitationMET}"></td>
+        <td th:text="'Precipitation MET: ' + ${precipitationMET}"></td>
     <tr/>
 </th:block>
 
@@ -51,7 +56,7 @@
 
 <th:block th:each="windSpeedMET : ${windSpeedListMET}">
     <tr>
-        <td th:text="'Wind speed: ' + ${windSpeedMET}"></td>
+        <td th:text="'Wind speed MET: ' + ${windSpeedMET}"></td>
     <tr/>
 </th:block>
 
@@ -59,7 +64,7 @@
 
 <th:block th:each="temperatureOpenWeather : ${temperatureListOpenWeather}">
     <tr>
-        <td th:text="'Temperature: ' + ${temperatureOpenWeather}"></td>
+        <td th:text="'Temperature OpenWeather: ' + ${temperatureOpenWeather}"></td>
 
     </tr>
 </th:block>
@@ -68,7 +73,7 @@
 
 <th:block th:each="precipitationOpenWeather : ${precipitationListOpenWeather}">
     <tr>
-        <td th:text="'Precipitation: ' + ${precipitationOpenWeather}"></td>
+        <td th:text="'Precipitation OpenWeather: ' + ${precipitationOpenWeather}"></td>
     <tr/>
 </th:block>
 
@@ -76,7 +81,7 @@
 
 <th:block th:each="windSpeedOpenWeather : ${windSpeedListOpenWeather}">
     <tr>
-        <td th:text="'Wind speed: ' + ${windSpeedOpenWeather}"></td>
+        <td th:text="'Wind speed OpenWeather: ' + ${windSpeedOpenWeather}"></td>
     <tr/>
 </th:block>
 
