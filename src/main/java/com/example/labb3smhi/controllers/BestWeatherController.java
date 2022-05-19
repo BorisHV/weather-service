@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class BestWeatherController {
     private OpenWeatherController openWeatherController;
 
 
+
     @Autowired
     public BestWeatherController(RepositorySMHI repositorySMHI, RepositoryMET repositoryMET,
                                  SMHIController smhiController, METController metController,
@@ -51,6 +53,13 @@ public class BestWeatherController {
         this.metController = metController;
         this.openWeatherController = openWeatherController;
         this.repositoryOpenWeather = repositoryOpenWeather;
+    }
+
+    public LocalDateTime getDateAndTime(){
+
+       LocalDateTime localDateTime = LocalDateTime.now().plusHours(24).minusSeconds(LocalDateTime.now()
+                .getSecond()).minusNanos(LocalDateTime.now().getNano());
+       return localDateTime;
     }
 
     public String lowestPrecipitation() {
@@ -168,6 +177,7 @@ public class BestWeatherController {
     }
 
     private String getAllWeatherOpenWeather(Model model) {
+        LocalDateTime localDateAndTime = getDateAndTime();
         Double temperatureOpenWeather = repositoryOpenWeather.getTemperatureOpenWeather();
         List<Double> temperatureListOpenWeather = new ArrayList<>();
         temperatureListOpenWeather.add(temperatureOpenWeather);
@@ -183,11 +193,12 @@ public class BestWeatherController {
         model.addAttribute("temperatureListOpenWeather", temperatureListOpenWeather);
         model.addAttribute("precipitationListOpenWeather", precipitationListOpenWeather);
         model.addAttribute("windSpeedListOpenWeather", windSpeedListOpenWeather);
-        model.addAttribute("localDateTime", LocalDateTime.now());
+        model.addAttribute("localDateTimeOpenWeather", localDateAndTime);
         return "index";
     }
 
     private String getAllWeatherSmhi(Model model) {
+        LocalDateTime localDateAndTime = getDateAndTime();
         List<Double> temperatureRepository = repositorySMHI.getTemperatureSMHI();
         List<Double> precipitationSMHI = repositorySMHI.getPrecipitationSMHI();
         List<Double> windSpeedSMHI = repositorySMHI.getWindSpeedSMHI();
@@ -195,10 +206,12 @@ public class BestWeatherController {
         model.addAttribute("temperatureListSMHI", temperatureRepository);
         model.addAttribute("precipitationListSMHI", precipitationSMHI);
         model.addAttribute("windSpeedListSMHI", windSpeedSMHI);
+        model.addAttribute("localDateTimeSmhi", localDateAndTime);
         return "index";
     }
 
     private String getAllWeatherMet(Model model) {
+        LocalDateTime localDateAndTime = getDateAndTime();
         Double temperatureRepositoryMET = repositoryMET.getTemperatureMET();
         temperatureListMet = new ArrayList<>();
         temperatureListMet.add(temperatureRepositoryMET);
@@ -214,6 +227,7 @@ public class BestWeatherController {
         model.addAttribute("temperatureListMET", temperatureRepositoryMET);
         model.addAttribute("precipitationListMET", precipitationMET);
         model.addAttribute("windSpeedListMET", windSpeedMET);
+        model.addAttribute("localDateTimeMet", localDateAndTime);
 
         return "index";
     }

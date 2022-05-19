@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +17,16 @@ public class METController {
     @Autowired
     private RepositoryMET repositoryMET;
 
+    public LocalDateTime getDateAndTime(){
+
+        LocalDateTime localDateTime = LocalDateTime.now().plusHours(24).minusSeconds(LocalDateTime.now()
+                .getSecond()).minusNanos(LocalDateTime.now().getNano());
+        return localDateTime;
+    }
+
     @GetMapping("/met")
     public String getAllWeatherMET(Model model) {
-
-        //String allWeatherData = smhiRestClient.getAllWeatherDataSMHI();
-
+        LocalDateTime localDateTime = getDateAndTime();
         Double temperatureRepositoryMET = repositoryMET.getTemperatureMET();
         List<Double> temperatureListMet = new ArrayList<>();
         temperatureListMet.add(temperatureRepositoryMET);
@@ -36,6 +42,7 @@ public class METController {
         model.addAttribute("temperatureListMET", temperatureRepositoryMET);
         model.addAttribute("precipitationListMET", precipitationMET);
         model.addAttribute("windSpeedListMET", windSpeedMET);
+        model.addAttribute("localDateTimeMet", localDateTime);
 
         return "index";
     }

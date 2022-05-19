@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +17,16 @@ public class OpenWeatherController {
     @Autowired
     private RepositoryOpenWeather repositoryOpenWeather;
 
-    @GetMapping("/open")
-    public String getAllWeatherMET(Model model) {
+    public LocalDateTime getDateAndTime(){
 
+        LocalDateTime localDateTime = LocalDateTime.now().plusHours(24).minusSeconds(LocalDateTime.now()
+                .getSecond()).minusNanos(LocalDateTime.now().getNano());
+        return localDateTime;
+    }
+
+    @GetMapping("/open")
+    public String getAllWeatherOpenWeather(Model model) {
+        LocalDateTime localDateTime = getDateAndTime();
         Double temperatureOpenWeather = repositoryOpenWeather.getTemperatureOpenWeather();
         List<Double> temperatureListOpenWeather = new ArrayList<>();
         temperatureListOpenWeather.add(temperatureOpenWeather);
@@ -34,6 +42,7 @@ public class OpenWeatherController {
         model.addAttribute("temperatureListOpenWeather", temperatureListOpenWeather);
         model.addAttribute("precipitationListOpenWeather", precipitationListOpenWeather);
         model.addAttribute("windSpeedListOpenWeather", windSpeedListOpenWeather);
+        model.addAttribute("localDateTimeOpenWeather", localDateTime);
 
         return "index";
     }

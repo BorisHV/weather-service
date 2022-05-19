@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <title>Weathers</title>
 </head>
+
 <body>
+<h1>Best weather in Stockholm, Liljeholmen</h1>
+
+<td th:text="${localDateTimeSmhi}"> </td>
 <th:block th:each="temperatureSMHI : ${temperatureListSMHI}">
-    <tr>
-<!--                                   ${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}-->
-        <td th:text="'tid och datum' + ${localDateTime.format('dd MM yyyy HH:mm')}"> </td>
-<!--        <td th:text="'tid och datum' + *{dateTimeNow.getMonth()}"> </td>-->
-    </tr>
+
+    </br>
     <tr>
         <td th:text="'Temperature SMHI: ' + ${temperatureSMHI}"></td>
 
@@ -38,6 +39,7 @@
 <br/>
 
 <th:block th:each="temperatureMET : ${temperatureListMET}">
+
     <tr>
         <td th:text="'Temperature MET: ' + ${temperatureMET}"></td>
 
@@ -62,7 +64,11 @@
 
 <br/>
 
+<br/>
+
 <th:block th:each="temperatureOpenWeather : ${temperatureListOpenWeather}">
+
+
     <tr>
         <td th:text="'Temperature OpenWeather: ' + ${temperatureOpenWeather}"></td>
 
